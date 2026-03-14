@@ -1,9 +1,15 @@
 <template>
   <div id="app">
     <router-view> </router-view>
-    <!-- Test Vant Config -->
-    <van-button type="primary">按钮</van-button>
+    <!-- Test postcss -->
+    <div class="box"></div>
   </div>
 </template>
 
-<style lang="less"></style>
+<style lang="less">
+.box {
+  width: 200px;
+  height: 200px;
+  background-color: pink;
+}
+</style>
