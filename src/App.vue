@@ -1,8 +1,6 @@
 <template>
   <div id="app">
     <router-view> </router-view>
-    <!-- Test postcss -->
-    <div class="box"></div>
   </div>
 </template>
 
