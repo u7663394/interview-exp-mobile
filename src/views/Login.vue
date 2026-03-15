@@ -1,14 +1,51 @@
 <template>
-  <div class="login-page">登录页</div>
+  <div class="login-page">
+    <!-- 头部 -->
+    <van-nav-bar title="登陆" />
+    <!-- 表单 -->
+    <van-form @submit="onSubmit">
+      <van-field
+        v-model="username"
+        name="username"
+        label="用户名"
+        placeholder="请输入用户名"
+        :rules="[
+          { required: true, message: '请填写用户名' },
+          { pattern: /^\w{2,}$/, message: '用户名至少包含2个字符' },
+        ]"
+      />
+      <van-field
+        v-model="password"
+        type="password"
+        name="password"
+        label="密码"
+        placeholder="请输入密码"
+        :rules="[
+          { required: true, message: '请填写密码' },
+          { pattern: /^\w{6,}$/, message: '密码至少6位' },
+        ]"
+      />
+      <div style="margin: 16px">
+        <van-button block type="info" native-type="submit">提交</van-button>
+      </div>
+    </van-form>
+  </div>
 </template>
 
 <script>
 export default {
   name: "LoginPage",
   data() {
-    return {};
+    return {
+      username: "",
+      password: "",
+    };
   },
-  methods: {},
+  methods: {
+    onSubmit(values) {
+      console.log("submit", values);
+    },
+  },
 };
 </script>
 
