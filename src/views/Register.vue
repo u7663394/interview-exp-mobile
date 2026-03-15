@@ -38,7 +38,7 @@
 </template>
 
 <script>
-import reqsuet from "@/utils/request";
+import { register } from "@/api/user";
 export default {
   name: "RegisterPage",
   data() {
@@ -50,7 +50,7 @@ export default {
   methods: {
     // 表单提交
     async onSubmit(values) {
-      const res = await reqsuet.post("/user/register", values);
+      const res = await register(values);
       console.log(res);
     },
   },
