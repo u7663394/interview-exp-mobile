@@ -11,7 +11,10 @@
         placeholder="请输入用户名"
         :rules="[
           { required: true, message: '请填写用户名' },
-          { pattern: /^\w{2,}$/, message: '用户名至少包含2个字符' },
+          {
+            pattern: /^[\u4e00-\u9fa5\w]{2,}$/,
+            message: '用户名至少包含2个字符',
+          },
         ]"
       />
       <van-field
