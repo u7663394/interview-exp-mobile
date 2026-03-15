@@ -29,6 +29,8 @@
         <van-button block type="info" native-type="submit">提交</van-button>
       </div>
     </van-form>
+    <!-- 跳转注册页 -->
+    <router-link class="link" to="/register">注册账号</router-link>
   </div>
 </template>
 
