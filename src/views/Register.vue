@@ -29,7 +29,7 @@
         ]"
       />
       <div style="margin: 16px">
-        <van-button block type="primary" native-type="submit">提交</van-button>
+        <van-button block type="primary" native-type="submit">注册</van-button>
       </div>
     </van-form>
     <!-- 跳转注册页 -->
@@ -50,8 +50,22 @@ export default {
   methods: {
     // 表单提交
     async onSubmit(values) {
-      const res = await register(values);
-      console.log(res);
+      // 1. 加载中的 toast
+      this.$toast.loading({
+        message: "注册中...",
+        forbidClick: true,
+      });
+      // 2. 发请求
+      try {
+        await register(values);
+        // 3.1. 成功的 toast
+        this.$toast.success("注册成功");
+        // 4. 跳转登陆页
+        this.$router.push("/login");
+      } catch (e) {
+        // 3.2. 失败的 toast
+        this.$toast.fail("注册失败，请重试");
+      }
     },
   },
 };
