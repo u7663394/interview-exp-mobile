@@ -1,4 +1,5 @@
 // 按需导入 Vant
 import Vue from "vue";
-import { Button } from "vant";
-Vue.use(Button);
+import { TabbarItem, Tabbar } from "vant";
+Vue.use(TabbarItem);
+Vue.use(Tabbar);
