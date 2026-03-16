@@ -56,16 +56,11 @@ export default {
         forbidClick: true,
       });
       // 2. 发请求
-      try {
-        await register(values);
-        // 3.1. 成功的 toast
-        this.$toast.success("注册成功");
-        // 4. 跳转登陆页
-        this.$router.push("/login");
-      } catch (e) {
-        // 3.2. 失败的 toast
-        this.$toast.fail("注册失败，请重试");
-      }
+      await register(values);
+      // 3. 成功的 toast
+      this.$toast.success("注册成功");
+      // 4. 跳转登陆页
+      this.$router.push("/login");
     },
   },
 };
