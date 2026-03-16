@@ -1,5 +1,6 @@
 import axios from "axios";
 import { Toast } from "vant";
+import { getToken } from "./storage";
 
 // 1. 创建实例
 const instance = axios.create({
@@ -7,10 +8,14 @@ const instance = axios.create({
   timeout: 5000,
 });
 
-// 2. 配置: 请求/响应拦截器
+// 2. 配置: 请求拦截器
 instance.interceptors.request.use(
   function (config) {
-    // 发送请求前
+    // 统一携带 token
+    const token = getToken();
+    if (token) {
+      config.headers.Authorization = `Bearer ${token}`;
+    }
     return config;
   },
   function (error) {
@@ -19,6 +24,7 @@ instance.interceptors.request.use(
   }
 );
 
+// 3. 配置: 响应拦截器
 instance.interceptors.response.use(
   function (response) {
     // 响应数据后
