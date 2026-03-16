@@ -38,6 +38,7 @@
 </template>
 
 <script>
+import { login } from "@/api/user";
 export default {
   name: "LoginPage",
   data() {
@@ -47,8 +48,15 @@ export default {
     };
   },
   methods: {
-    onSubmit(values) {
-      console.log("submit", values);
+    async onSubmit(values) {
+      // 1. 发请求
+      const res = await login(values);
+      // 2. 成功的 toast
+      this.$toast.success("登陆成功");
+      // 3. 存入 token
+      localStorage.setItem("vant-moblie-exp-token", res.data.data.token);
+      // 4. 跳转首页
+      this.$router.push("/");
     },
   },
 };
