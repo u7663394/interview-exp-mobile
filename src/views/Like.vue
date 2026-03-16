@@ -1,5 +1,9 @@
 <template>
-  <div class="like-page">喜欢</div>
+  <div class="like-page">
+    <ArticleItem></ArticleItem>
+    <ArticleItem></ArticleItem>
+    <ArticleItem></ArticleItem>
+  </div>
 </template>
 
 <script>
