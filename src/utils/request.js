@@ -1,6 +1,7 @@
 import axios from "axios";
 import { Toast } from "vant";
-import { getToken } from "./storage";
+import { delToken, getToken } from "./storage";
+import router from "@/router/index";
 
 // 1. 创建实例
 const instance = axios.create({
@@ -33,7 +34,14 @@ instance.interceptors.response.use(
   function (error) {
     // 响应错误时
     if (error.response) {
-      Toast.fail(error.response.data.message);
+      // 401 表示 token 问题
+      if (error.response.status === 401) {
+        delToken(); // 清楚无效 token
+        router.push("/login"); // 跳转到登陆页
+      } else {
+        // 其余问题，提示错误信息
+        Toast.fail(error.response.data.message);
+      }
     }
     return Promise.reject(error);
   }
