@@ -14,12 +14,21 @@
 </template>
 
 <script>
+import { getArticles } from "@/api/article";
 export default {
   name: "article-page",
   data() {
     return {};
   },
   methods: {},
+  async created() {
+    const res = await getArticles({
+      current: 1,
+      pageSize: 10,
+      sorter: "weight_desc",
+    });
+    console.log(res);
+  },
 };
 </script>
 
