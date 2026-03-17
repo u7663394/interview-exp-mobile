@@ -7,9 +7,7 @@
       <div class="logo"><img src="@/assets/logo.png" alt="logo" /></div>
     </nav>
     <!-- 单元格 -->
-    <ArticleItem></ArticleItem>
-    <ArticleItem></ArticleItem>
-    <ArticleItem></ArticleItem>
+    <ArticleItem v-for="item in list" :key="item.id" :item="item"></ArticleItem>
   </div>
 </template>
 
@@ -18,16 +16,22 @@ import { getArticles } from "@/api/article";
 export default {
   name: "article-page",
   data() {
-    return {};
+    return {
+      list: [], // 文章列表
+      current: 1,
+      sorter: "weight_desc",
+    };
   },
   methods: {},
   async created() {
+    // 1. 发请求得到数据
     const res = await getArticles({
-      current: 1,
+      current: this.current,
       pageSize: 10,
-      sorter: "weight_desc",
+      sorter: this.sorter,
     });
-    console.log(res);
+    // 2. 存数据
+    this.list = res.data.data.rows;
   },
 };
 </script>
