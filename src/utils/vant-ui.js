@@ -10,6 +10,7 @@ import {
   Toast,
   Cell,
   List,
+  Icon,
 } from "vant";
 Vue.use(TabbarItem);
 Vue.use(Tabbar);
@@ -20,3 +21,4 @@ Vue.use(NavBar);
 Vue.use(Toast);
 Vue.use(Cell);
 Vue.use(List);
+Vue.use(Icon);
