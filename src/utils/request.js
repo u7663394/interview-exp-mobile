@@ -28,8 +28,8 @@ instance.interceptors.request.use(
 // 3. 配置: 响应拦截器
 instance.interceptors.response.use(
   function (response) {
-    // 响应数据后
-    return response;
+    // 响应数据后: 统一数据剥离
+    return response.data;
   },
   function (error) {
     // 响应错误时

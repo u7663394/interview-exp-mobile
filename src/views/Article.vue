@@ -31,7 +31,7 @@ export default {
       sorter: this.sorter,
     });
     // 2. 存数据
-    this.list = res.data.data.rows;
+    this.list = res.data.rows;
   },
 };
 </script>

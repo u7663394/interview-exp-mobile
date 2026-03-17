@@ -55,7 +55,7 @@ export default {
       // 2. 成功的 toast
       this.$toast.success("登陆成功");
       // 3. 存入 token
-      setToken(res.data.data.token);
+      setToken(res.data.token);
       // 4. 跳转首页
       this.$router.push("/");
     },
