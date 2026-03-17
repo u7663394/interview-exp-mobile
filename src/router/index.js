@@ -1,12 +1,12 @@
 import { getToken } from "@/utils/storage";
-import Article from "@/views/Article.vue";
-import Collect from "@/views/Collect.vue";
-import Detail from "@/views/Detail.vue";
-import Layout from "@/views/Layout.vue";
-import Like from "@/views/Like.vue";
-import Login from "@/views/Login.vue";
-import Register from "@/views/Register.vue";
-import User from "@/views/User.vue";
+const Article = () => import("@/views/Article.vue");
+const Collect = () => import("@/views/Collect.vue");
+const Detail = () => import("@/views/Detail.vue");
+const Layout = () => import("@/views/Layout.vue");
+const Like = () => import("@/views/Like.vue");
+const Login = () => import("@/views/Login.vue");
+const Register = () => import("@/views/Register.vue");
+const User = () => import("@/views/User.vue");
 import Vue from "vue";
 import VueRouter from "vue-router";
 
