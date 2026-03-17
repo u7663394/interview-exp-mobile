@@ -7,7 +7,12 @@
       <div class="logo"><img src="@/assets/logo.png" alt="logo" /></div>
     </nav>
     <!-- 单元格 -->
-    <van-list v-model="loading" :finished="finished" @load="onLoad">
+    <van-list
+      v-model="loading"
+      :finished="finished"
+      @load="onLoad"
+      finished-text="没有更多文章了"
+    >
       <ArticleItem
         v-for="item in list"
         :key="item.id"
@@ -24,7 +29,7 @@ export default {
   data() {
     return {
       list: [], // 文章列表
-      current: 1,
+      current: 33,
       sorter: "weight_desc",
       loading: false,
       finished: false,
@@ -43,6 +48,10 @@ export default {
       // 3. 改 loading, 加 current
       this.loading = false;
       this.current++;
+      // 4. 全部数据渲染完毕
+      if (this.current > res.data.pageTotal) {
+        this.finished = true;
+      }
     },
   },
 };
