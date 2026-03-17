@@ -2,8 +2,8 @@
   <div class="article-page">
     <!-- 头部导航 -->
     <nav class="my-nav van-hairline--bottom">
-      <a href="javascript:;">推荐</a>
-      <a href="javascript:;">最新</a>
+      <a href="javascript:;" @click="changeSorter('weight_desc')">推荐</a>
+      <a href="javascript:;" @click="changeSorter(null)">最新</a>
       <div class="logo"><img src="@/assets/logo.png" alt="logo" /></div>
     </nav>
     <!-- 单元格 -->
@@ -52,6 +52,17 @@ export default {
       if (this.current > res.data.pageTotal) {
         this.finished = true;
       }
+    },
+    changeSorter(value) {
+      // 1. 修改排序规则
+      this.sorter = value;
+      // 2. 重制分页参数
+      this.current = 33;
+      this.list = [];
+      this.finished = false;
+      this.loading = true;
+      // 3. 重新渲染
+      this.onLoad();
     },
   },
 };
