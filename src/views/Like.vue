@@ -1,19 +1,48 @@
 <template>
   <div class="like-page">
-    <ArticleItem></ArticleItem>
-    <ArticleItem></ArticleItem>
-    <ArticleItem></ArticleItem>
+    <van-nav-bar fixed title="我的点赞" />
+    <van-list
+      v-model="loading"
+      :finished="finished"
+      finished-text="没有更多了"
+      @load="onLoad"
+    >
+      <ArticleItem v-for="item in list" :key="item.id" :item="item" />
+    </van-list>
   </div>
 </template>
 
 <script>
+import { getArticlesLike } from "@/api/article";
 export default {
-  name: "LikePage",
+  name: "like-page",
   data() {
-    return {};
+    return {
+      list: [],
+      loading: false,
+      finished: false,
+      page: 1,
+    };
   },
-  methods: {},
+  methods: {
+    async onLoad() {
+      // 1. 更新数据
+      const { data } = await getArticlesLike({ page: this.page });
+      this.list.push(...data.rows);
+      this.loading = false;
+      this.page++;
+      // 2. 结束文本
+      if (this.page > data.pageTotal) {
+        this.finished = true;
+      }
+    },
+  },
 };
 </script>
 
-<style lang="less" scoped></style>
+<style lang="less" scoped>
+.like-page {
+  margin-bottom: 50px;
+  margin-top: 44px;
+}
+</style>
