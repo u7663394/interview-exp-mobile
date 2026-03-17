@@ -9,6 +9,7 @@ import {
   NavBar,
   Toast,
   Cell,
+  List,
 } from "vant";
 Vue.use(TabbarItem);
 Vue.use(Tabbar);
@@ -18,3 +19,4 @@ Vue.use(Button);
 Vue.use(NavBar);
 Vue.use(Toast);
 Vue.use(Cell);
+Vue.use(List);

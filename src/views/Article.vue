@@ -7,7 +7,13 @@
       <div class="logo"><img src="@/assets/logo.png" alt="logo" /></div>
     </nav>
     <!-- 单元格 -->
-    <ArticleItem v-for="item in list" :key="item.id" :item="item"></ArticleItem>
+    <van-list v-model="loading" :finished="finished" @load="onLoad">
+      <ArticleItem
+        v-for="item in list"
+        :key="item.id"
+        :item="item"
+      ></ArticleItem>
+    </van-list>
   </div>
 </template>
 
@@ -20,18 +26,24 @@ export default {
       list: [], // 文章列表
       current: 1,
       sorter: "weight_desc",
+      loading: false,
+      finished: false,
     };
   },
-  methods: {},
-  async created() {
-    // 1. 发请求得到数据
-    const res = await getArticles({
-      current: this.current,
-      pageSize: 10,
-      sorter: this.sorter,
-    });
-    // 2. 存数据
-    this.list = res.data.rows;
+  methods: {
+    async onLoad() {
+      // 1. 发请求得到数据
+      const res = await getArticles({
+        current: this.current,
+        pageSize: 10,
+        sorter: this.sorter,
+      });
+      // 2. 存数据
+      this.list.push(...res.data.rows);
+      // 3. 改 loading, 加 current
+      this.loading = false;
+      this.current++;
+    },
   },
 };
 </script>
