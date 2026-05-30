@@ -6,7 +6,7 @@ import router from "@/router/index";
 // 1. 创建实例
 const instance = axios.create({
   baseURL: "http://interview-api-t.itheima.net/h5/",
-  timeout: 5000,
+  timeout: 15000,
 });
 
 // 2. 配置: 请求拦截器
